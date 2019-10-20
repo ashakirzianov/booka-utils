@@ -1,8 +1,5 @@
 import { Schema, model as modelMongoose, Document, Model, DocumentQuery } from 'mongoose';
-
-type HasId = {
-    _id: string;
-};
+import { HasId } from 'booka-common';
 
 export function paginate<T, D extends Document>(query: DocumentQuery<T, D>, page: number, pageSize: number = 100) {
     return query

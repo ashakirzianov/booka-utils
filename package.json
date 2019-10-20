@@ -38,6 +38,7 @@
     "typescript": "beta"
   },
   "dependencies": {
+    "booka-common": "^0.10.0",
     "mongoose": "^5.7.5"
   }
 }
