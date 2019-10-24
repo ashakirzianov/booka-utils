@@ -40,7 +40,7 @@
     "typescript": "beta"
   },
   "dependencies": {
-    "booka-common": "^0.10.0",
+    "booka-common": "^0.11.0",
     "koa": "^2.10.0",
     "koa-router": "^7.4.0",
     "mongoose": "^5.7.5"
