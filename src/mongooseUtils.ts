@@ -27,6 +27,10 @@ export function extractDataFields<T extends Document>(doc: T): DataFromModel<Mod
     return result;
 }
 
+export function taggedObject<T>(): TaggedObject<T> {
+    return Object;
+}
+
 export type DataFromModel<M extends Model<Document>> =
     M extends Model<infer D> ? Omit<D, keyof Document> : never;
 export const ObjectId = Schema.Types.ObjectId;
@@ -58,9 +62,12 @@ type SchemaFieldComplex<T extends SchemaType> = {
     required?: boolean,
 };
 
+type TaggedObject<T> = ObjectConstructor & { _tag?: T };
 type SchemaTypeSimple =
-    | StringConstructor | NumberConstructor | BooleanConstructor | DateConstructor
+    | StringConstructor | NumberConstructor
+    | BooleanConstructor | DateConstructor
     | ObjectConstructor | ObjectIdConstructor
+    | TaggedObject<any>
     ;
 type SchemaType =
     | SchemaTypeSimple
@@ -73,6 +80,7 @@ type GetTypeSimple<T> =
     T extends NumberConstructor ? number :
     T extends BooleanConstructor ? boolean :
     T extends DateConstructor ? Date :
+    T extends TaggedObject<infer U> ? U :
     T extends ObjectConstructor ? object :
     T extends ObjectIdConstructor ? string :
     never;
