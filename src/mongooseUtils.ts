@@ -5,6 +5,7 @@ export async function connectDb(uri: string) {
     set('useNewUrlParser', true);
     set('useFindAndModify', false);
     set('useCreateIndex', true);
+    set('useUnifiedTopology', true);
 
     return connect(uri);
 }
